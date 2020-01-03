@@ -127,6 +127,5 @@ These functions were connected to pushButton so immediately you click the run bu
 
 To use as script, clone and run the `battery_saver.py` file.
 
-The .exe file can found inside 
-
+The .exe file can found inside /dist folder
 
