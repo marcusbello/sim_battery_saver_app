@@ -99,13 +99,34 @@ So, inside the Dialog, we have all these items and they have a unique object nam
 Lets look at the class running the script - MyForm() inside the battery_saver.py
 
 A Class can have many or one function, but using OOP, 
-lets look at the class's __init__() function and the run_app() :- 
+lets look at the class's __init__() function :- 
 
-1. we called a super on it, to overwrite any other arguement from the old Dialog, since our class has the QDialog from the finalbat.py script.
+1. we called a super() on it, to overwrite any other arguement from the old Dialog, since our class has the QDialog from the finalbat.py script in other to always run the battery_saver.py script over the finalbat.py.
 
-2.
+2. Now setup the new Dialog with setting `ui = Ui_Dialog`
+
+3. Cleared the tableWidget contents  `tableWidget.clearContents()`
+
+4. Since I imported the main.py file into the battery_saver.py , then I set a variable to capture the list of apps `proc = get_apps()`
+
+5. called a show on the dialog variable, to make it load the page immediately I run the app. 
+
+6. connected the pushButton to the `run_app()` function
+
+7. Show list of apps in the tableWidget, the table widget has just to two main function in this script, to select apps and filter the apps when user click each column header i.e sort by pid or the percentage usage or name of the process, which is displayed as the column header.
+
+About the run_app() function inside the MyForm() class. 
+
+1. run kill_pid() function 
+
+2. run the reduce_brightness() function
+
+These functions were connected to pushButton so immediately you click the run button on the app, both the kill the selected app and reduce the screen brightness.
 
 
-Clone and run the `battery_saver.py` file.
+
+To use as script, clone and run the `battery_saver.py` file.
+
+The .exe file can found inside 
 
 
