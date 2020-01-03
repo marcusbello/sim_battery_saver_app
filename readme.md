@@ -22,8 +22,8 @@ Used the python psutil module , lets talk about this psutil module a litte.
 
    psutil (process and system utilities) is a cross-platform library for retrieving information on running processes and system utilization (CPU, memory, disks, network, sensors) in Python. It is useful mainly for system monitoring, profiling and limiting process resources and management of running processes. It implements many functionalities offered by classic UNIX command line tools such as ps, top, iotop, lsof, netstat, ifconfig, free and others. psutil currently supports the following platforms:
 
-**Linux
-Windows
+Linux
+**Windows**
 macOS
 FreeBSD, OpenBSD, NetBSD
 Sun Solaris
