@@ -32,7 +32,8 @@ AIX**
 
 _…works for both 32-bit and 64-bit architectures. Supported Python versions are 2.6, 2.7 and 3.4+. PyPy is also known to work._
 
-Check the main.py script, I used this module to create a funcion that gets the list of running process. 
+Inside the main.py script, I used this module to create a function that returns the list of running process running with above 0.0% cpu usage. 
+
 
 
 2. Selected processes will be closed when the app user clicks the 
@@ -48,6 +49,6 @@ _tweaked the brightness with WMI , learn more about wmi module here https://pypi
 
 
 The GUI was designed using pyqt5 and to run this script , clone and 
-run the `callFinalUi.pyw` file.
+run the `battery_saver.py` file.
 
 
