@@ -23,10 +23,15 @@ Used the python psutil module , lets talk about this psutil module a litte.
    psutil (process and system utilities) is a cross-platform library for retrieving information on running processes and system utilization (CPU, memory, disks, network, sensors) in Python. It is useful mainly for system monitoring, profiling and limiting process resources and management of running processes. It implements many functionalities offered by classic UNIX command line tools such as ps, top, iotop, lsof, netstat, ifconfig, free and others. psutil currently supports the following platforms:
 
 Linux
-**Windows**
+
+Windows
+
 macOS
+
 FreeBSD, OpenBSD, NetBSD
+
 Sun Solaris
+
 AIX**
 
 
@@ -38,8 +43,15 @@ Inside the main.py script, I used this module to create a function that returns 
 
 2. Selected processes will be closed when the app user clicks the 
 run button.
+  
+  When a process is running on a machine, it has a unique number called pid i.e process identification number, this pid can be used to
+to manage a process, since this is a windows app, using windows command prompt or powershell, if you know a process pid, you can close it by running this command `taskkill /f /t /pid <replace with the pid you want>` this will close the process using the specified pid. The /f means to force kill and /t means to kill all threads, you can decide to remove any of the options this. So, I integrated this command in the app using python powerful OS module.
 
-_With the help of the os module , I used os.system() to call a taskkill on all the selected processes pid._
+    OS module is a very big module, because you can use it for a large variety of stuffs and works almost the same on all types of OS, e.g windows, mac, linux etc. its the official module used to communicate directly with the OS of any machine. 
+    While working with this OS module, I used os.system() to run the taskkill command, as what the os.system() does is that, it will run any argument you put there like you're running it inside a commandline. 
+    
+This snippet was included in the class MyForm() running the user interface, see the kill_pid() function inside the `battery_saver.py` to get a hang of how I used the this os.system() to call a taskkill on all the selected processes.
+
 
 3. Lastly, the app also reduces the screen brightness to 20% 
 immediately you click the run button.
