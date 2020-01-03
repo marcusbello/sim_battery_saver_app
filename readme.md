@@ -39,7 +39,7 @@ _…works for both 32-bit and 64-bit architectures. Supported Python versions ar
 
 Inside the main.py script, I used this module to create a function that returns the list of running process running with above 0.0% cpu usage. 
 
-
+Read more about psutil >> http://psutil.readthedocs.io/ .
 
 2. Selected processes will be closed when the app user clicks the 
 run button.
@@ -47,8 +47,12 @@ run button.
   When a process is running on a machine, it has a unique number called pid i.e process identification number, this pid can be used to
 to manage a process, since this is a windows app, using windows command prompt or powershell, if you know a process pid, you can close it by running this command `taskkill /f /t /pid <replace with the pid you want>` this will close the process using the specified pid. The /f means to force kill and /t means to kill all threads, you can decide to remove any of the options this. So, I integrated this command in the app using python powerful OS module.
 
-    OS module is a very big module, because you can use it for a large variety of stuffs and works almost the same on all types of OS, e.g windows, mac, linux etc. its the official module used to communicate directly with the OS of any machine. 
-    While working with this OS module, I used os.system() to run the taskkill command, as what the os.system() does is that, it will run any argument you put there like you're running it inside a commandline. 
+**OS Module**
+
+  OS module is a very big module, because you can use it for a large variety of stuffs and works almost the same 
+  on all types of OS, e.g windows, mac, linux etc. its the official module used to communicate directly with the OS of any machine. 
+  While working with this OS module, I used os.system() to run the taskkill command, as what the os.system() does is 
+  that, it will run any argument you put there like you're running it inside a commandline. 
     
 This snippet was included in the class MyForm() running the user interface, see the kill_pid() function inside the `battery_saver.py` to get a hang of how I used the this os.system() to call a taskkill on all the selected processes.
 
@@ -56,11 +60,52 @@ This snippet was included in the class MyForm() running the user interface, see 
 3. Lastly, the app also reduces the screen brightness to 20% 
 immediately you click the run button.
 
-_tweaked the brightness with WMI , learn more about wmi module here https://pypi.org/project/WMI/_
+I was able to tweak the brightness with the use of WMI Module, but what is WMI ?
+
+Windows Management Instrumentation (WMI) is Microsoft’s implementation of Web-Based Enterprise Management (WBEM), an industry initiative to provide a Common Information Model (CIM) for pretty much any information about a computer system.
+
+But talking about the Python WMI module, it's a lightweight wrapper on top of the pywin32 extensions, and hides some of the messy plumbing needed to get Python to talk to the WMI API. It’s pure Python and should work with any version of Python from 2.1 onwards (list comprehensions) and any recent version of pywin32.
+
+I used this module to reduce the screen brightness, since the app was for windows, I can easily use the WMI API to control the screen brightness, the function called in the reduce_brigtness() in the MyForm() class handles this, check battery_saver.py  
+
+
+Learn more about wmi module here https://pypi.org/project/WMI/_
 
 
 
-The GUI was designed using pyqt5 and to run this script , clone and 
-run the `battery_saver.py` file.
+**Let's talk about the GUI**  
+
+It's a simple GUI, designed with PyQt5, named finalbat.py, the finalbat.py was included in the battery_saver.py as its the main script that runs the app.
+
+PyQt is a Python binding of the cross-platform GUI toolkit Qt, implemented as a Python plug-in. It is implemented as more than 35 extension modules and enables Python to be used as an alternative application development language to C++ on all supported platforms including iOS and Android.
+
+Inside this script simple GUI, we have different elements like :-
+
+    Dialog - houses all the GUI items in the app with the class name `Ui_Dialog` which has the `Setup_Ui` function defined in it, the Setup_Ui function setups our elements inside the Dialog.
+    
+So, inside the Dialog, we have all these items and they have a unique object name:-    
+
+    Label - this a used as the text part which says, Battery Saver when you launch the app, its ordinary and can only be static, default object name for this item is `label`.
+    
+    TextEdit - this element is the one with instructions and note, it can be dynamic or set to static, the object name for this is `textEdit`.
+    
+    TableWidget - this table was integrated with the `main.py` file after importing it into the `battery_saver.py` , see list_process() function inside the battery_saver.py script. The table item is always used for dynamic purposes, but can be static and has it's default objectname as `tableWidget`.
+    
+    PushButton -  the pushbutton is the button with run when you open the app, it's default objectname is pushButton, and it's connected to a function.
+
+
+**Little breakdown**
+
+Lets look at the class running the script - MyForm() inside the battery_saver.py
+
+A Class can have many or one function, but using OOP, 
+lets look at the class's __init__() function and the run_app() :- 
+
+1. we called a super on it, to overwrite any other arguement from the old Dialog, since our class has the QDialog from the finalbat.py script.
+
+2.
+
+
+Clone and run the `battery_saver.py` file.
 
 
